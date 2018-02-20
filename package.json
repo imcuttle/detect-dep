@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\"",
-    "precommit": "npm run doc"
+    "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
   },
+  "precommit": "doc",
   "keywords": [
     "imcuttle",
     "detect-dep"
