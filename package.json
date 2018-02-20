@@ -1,10 +1,10 @@
 {
   "name": "detect-dep",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Detect the dependencies of import/require by walking AST",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "prepare": "npm run doc",
     "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
   },
@@ -13,7 +13,7 @@
     "imcuttle",
     "detect-dep"
   ],
-  "author": "",
+  "author": "imcuttle",
   "license": "MIT",
   "dependencies": {
     "babel-traverse": "^6.26.0",
