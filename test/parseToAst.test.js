@@ -4,7 +4,7 @@
  * @date 2018/2/20
  * @description
  */
-var parseToAst = require('./parseToAst')
+var parseToAst = require('../lib/parseToAst')
 
 
 function testSnapshot(codes) {

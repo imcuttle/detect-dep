@@ -13,7 +13,7 @@ Detect the dependencies of import/require by walking AST
 
 ### AST
 
-[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/622dcc14475853b6f421d8aad1a7a9d3b4d0723a/lib/detectDep.js#L59-L92 "Source code on GitHub")
+[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/5bbec955efb3680b07a74aaf428869d0f88dc1ef/lib/detectDep.js#L59-L92 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -22,7 +22,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/622dcc14475853b6f421d8aad1a7a9d3b4d0723a/lib/detectDep.js#L59-L92 "Source code on GitHub")
+[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/5bbec955efb3680b07a74aaf428869d0f88dc1ef/lib/detectDep.js#L59-L92 "Source code on GitHub")
 
 **Parameters**
 

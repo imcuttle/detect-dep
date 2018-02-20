@@ -15,6 +15,7 @@
   "author": "imcuttle",
   "license": "MIT",
   "dependencies": {
+    "array-uniq": "^1.0.3",
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
     "detective": "^5.0.2",

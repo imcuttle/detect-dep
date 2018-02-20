@@ -4,7 +4,8 @@
  * @date 2018/2/20
  * @description
  */
-var getImports = require('./detectDep')
+var fs = require('fs')
+var getImports = require('../lib/detectDep')
 
 function c(lines) {
   return lines.join('\n')
@@ -89,4 +90,28 @@ describe('getImports', function () {
     ).toEqual(['a'])
   })
 
+  it('case 9 recursive error', function () {
+    expect(
+      () => getImports(fs.readFileSync(__dirname + '/fixture/error.js').toString(), { from: __dirname + '/fixture/error.js' })
+    ).toThrow(/Cannot find module/)
+  })
+
+  it('case 9 recursive success', function () {
+    expect(
+      getImports(fs.readFileSync(__dirname + '/fixture/main.js').toString(), { from: __dirname + '/fixture/main.js' })
+    ).toEqual([
+      __dirname + '/fixture/' + 'A/a.js',
+      __dirname + '/fixture/' + 'B/b.js',
+      __dirname + '/fixture/' + 'B/b-0.js'
+    ])
+  })
+
+  it('case 9 recursive: false success', function () {
+    expect(
+      getImports(fs.readFileSync(__dirname + '/fixture/main.js').toString(), { from: __dirname + '/fixture/main.js', recursive: false })
+    ).toEqual([
+      __dirname + '/fixture/' + 'A/a.js',
+      __dirname + '/fixture/' + 'B/b.js'
+    ])
+  })
 })
