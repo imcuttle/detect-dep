@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "prepare": "npm run doc",
     "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
   },
   "postcommit": "doc",
