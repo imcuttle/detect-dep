@@ -1,4 +1,5 @@
 # detect-dep
+Detect the dependencies of import/require by walking AST
 
 [![build status](https://img.shields.io/travis/imcuttle/detect-dep/master.svg?style=flat-square)](https://travis-ci.org/imcuttle/detect-dep)
 [![Test coverage](https://img.shields.io/codecov/c/github/imcuttle/detect-dep.svg?style=flat-square)](https://codecov.io/github/imcuttle/detect-dep?branch=master)

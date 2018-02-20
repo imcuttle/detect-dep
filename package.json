@@ -1,10 +1,11 @@
 {
   "name": "detect-dep",
   "version": "1.0.0",
-  "description": "Detect the dependiencies of import/require by walking AST",
+  "description": "Detect the dependencies of import/require by walking AST",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run doc",
     "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
   },
   "keywords": [
