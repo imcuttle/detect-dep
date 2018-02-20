@@ -13,7 +13,7 @@ Detect the dependencies of import/require by walking AST
 
 ### AST
 
-[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/67cf2065d485cce1f9ea389fabd3cb5c18012583/lib/detectDep.js#L59-L92 "Source code on GitHub")
+[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/de2ac77be2d052d33faf0178667ca39f3b0252e9/lib/detectDep.js#L59-L92 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -22,20 +22,20 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/67cf2065d485cce1f9ea389fabd3cb5c18012583/lib/detectDep.js#L59-L92 "Source code on GitHub")
+[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/de2ac77be2d052d33faf0178667ca39f3b0252e9/lib/detectDep.js#L59-L92 "Source code on GitHub")
 
 **Parameters**
 
 -   `source`  {String|AST}
 -   `options`  {Object}
     -   `options.es6Import`  {Boolean}
-         whether detecting `import ...` or not (optional, default `true`)
+           whether detecting `import ...` or not (optional, default `true`)
     -   `options.requireImport`  {Boolean}
-         whether detecting `require('...')` or not (optional, default `true`)
+           whether detecting `require('...')` or not (optional, default `true`)
     -   `options.localImport`  {Boolean}
-         whether requiring `require('./local/path')` or not (optional, default `true`)
+           whether requiring `require('./local/path')` or not (optional, default `true`)
     -   `options.moduleImport`  {Boolean}
-         whether requiring `require('path')` or not (optional, default `true`)
+           whether requiring `require('path')` or not (optional, default `true`)
 
 **Examples**
 
