@@ -7,7 +7,7 @@
     "test": "jest --coverage",
     "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
   },
-  "postcommit": "doc",
+  "precommit": "doc",
   "keywords": [
     "imcuttle",
     "detect-dep"
@@ -24,6 +24,6 @@
   "devDependencies": {
     "documentation": "^5.4.0",
     "jest": "^22.3.0",
-    "post-commit": "^0.0.1"
+    "pre-commit": "^1.2.2"
   }
 }
