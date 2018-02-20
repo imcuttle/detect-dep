@@ -1,4 +1,5 @@
 # detect-dep
+
 Detect the dependencies of import/require by walking AST
 
 [![build status](https://img.shields.io/travis/imcuttle/detect-dep/master.svg?style=flat-square)](https://travis-ci.org/imcuttle/detect-dep)
@@ -12,6 +13,8 @@ Detect the dependencies of import/require by walking AST
 
 ### AST
 
+[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/90b112f99347c4cec0edeb0815de0d83877485a6/lib/detectDep.js#L59-L92 "Source code on GitHub")
+
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
 
@@ -19,14 +22,20 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
+[lib/detectDep.js:59-92](https://github.com/imcuttle/detect-dep/blob/90b112f99347c4cec0edeb0815de0d83877485a6/lib/detectDep.js#L59-L92 "Source code on GitHub")
+
 **Parameters**
 
 -   `source`  {String|AST}
 -   `options`  {Object}
-    -   `options.es6Import`  {Boolean} (optional, default `true`)
-    -   `options.requireImport`  {Boolean} true (optional, default `true`)
-    -   `options.localImport`  {Boolean} true (optional, default `true`)
-    -   `options.moduleImport`  {Boolean} true (optional, default `true`)
+    -   `options.es6Import`  {Boolean}
+         whether detecting `import ...` or not (optional, default `true`)
+    -   `options.requireImport`  {Boolean}
+         whether detecting `require('...')` or not (optional, default `true`)
+    -   `options.localImport`  {Boolean}
+         whether requiring `require('./local/path')` or not (optional, default `true`)
+    -   `options.moduleImport`  {Boolean}
+         whether requiring `require('path')` or not (optional, default `true`)
 
 **Examples**
 

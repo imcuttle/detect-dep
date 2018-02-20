@@ -8,6 +8,7 @@
     "prepare": "npm run doc",
     "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
   },
+  "postcommit": "doc",
   "keywords": [
     "imcuttle",
     "detect-dep"
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "documentation": "^5.4.0",
-    "jest": "^22.3.0"
+    "jest": "^22.3.0",
+    "post-commit": "^0.0.1"
   }
 }
