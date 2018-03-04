@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\"",
-    "prepublish": "npm run doc"
+    "prepublishOnly": "npm run doc"
   },
   "pre-commit": [
     "test"
