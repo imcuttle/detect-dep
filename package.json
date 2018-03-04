@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
+    "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\"",
+    "version": "npm run doc"
   },
   "keywords": [
     "imcuttle",
