@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\""
+    "doc": "documentation --github --markdown-toc=false readme index.js -a public -s \"API\"",
+    "preversion": "npm run doc"
   },
   "pre-commit": [
-    "test",
-    "doc"
+    "test"
   ],
   "keywords": [
     "imcuttle",
