@@ -28,5 +28,17 @@
     "documentation": "^5.4.0",
     "jest": "^22.3.0",
     "pre-commit": "^1.2.2"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imcuttle/detect-dep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/imcuttle/detect-dep/issues"
+  },
+  "homepage": "https://github.com/imcuttle/detect-dep#readme"
 }
