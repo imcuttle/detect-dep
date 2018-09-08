@@ -26,7 +26,7 @@ const dependencies = detectDep('some code')
 
 ### AST
 
-[lib/detectDep.js:74-167](https://github.com/imcuttle/detect-dep/blob/4acb0d8b09b7aad57b3853f9ee77823c682414fc/lib/detectDep.js#L74-L167 "Source code on GitHub")
+[lib/detectDep.js:77-170](https://github.com/imcuttle/detect-dep/blob/1b0a17d0727aa95a18035e0f4d82c614f3777537/lib/detectDep.js#L77-L170 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -35,7 +35,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:74-167](https://github.com/imcuttle/detect-dep/blob/4acb0d8b09b7aad57b3853f9ee77823c682414fc/lib/detectDep.js#L74-L167 "Source code on GitHub")
+[lib/detectDep.js:77-170](https://github.com/imcuttle/detect-dep/blob/1b0a17d0727aa95a18035e0f4d82c614f3777537/lib/detectDep.js#L77-L170 "Source code on GitHub")
 
 **Parameters**
 
@@ -50,7 +50,9 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
     -   `options.moduleImport`  {Boolean}
            whether requiring `require('path')` or not (optional, default `true`)
     -   `options.extensions`  {string\[]}
-           Which file with matching extension should be detected recursively (optional, default `['.js','.jsx','.ts','.tsx']`)
+           Which file with matching extension should be detected recursively (optional, default `['.js','.jsx']`)
+    -   `options.resolveExtensions`  {string\[]}
+           The resolved path's extensions which are allowed (would be extends options.extensions) (optional, default `Object.keys(require.extensions)`)
     -   `options.from`  {String}
            where is the source from  (filename) (optional, default `''`)
     -   `options.recursive`  {boolean}
