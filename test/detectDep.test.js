@@ -11,107 +11,151 @@ function c(lines) {
   return lines.join('\n')
 }
 
-describe('getImports', function () {
-  it('case 1', function () {
-    expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"'
-      ]))
-    ).toEqual(['a', 'bbb'])
+describe('getImports', function() {
+  it('case 1', function() {
+    expect(getImports(c(['import a from "a"', 'import b from "bbb"']))).toEqual(
+      ['a', 'bbb']
+    )
   })
 
-  it('case 2', function () {
+  it('case 2', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"'
-      ]), { es6Import: false })
+      getImports(c(['import a from "a"', 'import b from "bbb"']), {
+        es6Import: false
+      })
     ).toEqual([])
   })
 
-  it('case 3', function () {
+  it('case 3', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"',
-        'require("xx")'
-      ]), {  })
+      getImports(
+        c(['import a from "a"', 'import b from "bbb"', 'require("xx")']),
+        {}
+      )
     ).toEqual(['a', 'bbb', 'xx'])
   })
 
-  it('case 4', function () {
+  it('case 4', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"',
-        'require("xx")'
-      ]), { requireImport: false })
+      getImports(
+        c(['import a from "a"', 'import b from "bbb"', 'require("xx")']),
+        { requireImport: false }
+      )
     ).toEqual(['a', 'bbb'])
   })
 
-  it('case 5', function () {
+  it('case 5', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"',
-        'require(require("xx"))'
-      ]), { requireImport: true })
+      getImports(
+        c([
+          'import a from "a"',
+          'import b from "bbb"',
+          'require(require("xx"))'
+        ]),
+        { requireImport: true }
+      )
     ).toEqual(['a', 'bbb', 'xx'])
   })
 
-  it('case 6', function () {
+  it('case 6', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"',
-        'require(require("xx"))'
-      ]), { requireImport: true })
+      getImports(
+        c([
+          'import a from "a"',
+          'import b from "bbb"',
+          'require(require("xx"))'
+        ]),
+        { requireImport: true }
+      )
     ).toEqual(['a', 'bbb', 'xx'])
   })
 
-  it('case 7', function () {
+  it('case 7', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "bbb"',
-        'require(require("xx"))'
-      ]), { moduleImport: false })
+      getImports(
+        c([
+          'import a from "a"',
+          'import b from "bbb"',
+          'require(require("xx"))'
+        ]),
+        { moduleImport: false }
+      )
     ).toEqual([])
   })
 
-  it('case 8', function () {
+  it('case 8', function() {
     expect(
-      getImports(c([
-        'import a from "a"',
-        'import b from "/User/sss"',
-        'require(require("./aa"))'
-      ]), { localImport: false })
+      getImports(
+        c([
+          'import a from "a"',
+          'import b from "/User/sss"',
+          'require(require("./aa"))'
+        ]),
+        { localImport: false }
+      )
     ).toEqual(['a'])
   })
 
-  it('case 9 recursive error', function () {
-    expect(
-      () => getImports(fs.readFileSync(__dirname + '/fixture/error.js').toString(), { from: __dirname + '/fixture/error.js' })
+  it('case 9 recursive error', function() {
+    expect(() =>
+      getImports(fs.readFileSync(__dirname + '/fixture/error.js').toString(), {
+        from: __dirname + '/fixture/error.js'
+      })
     ).toThrow(/Cannot find module/)
   })
 
-  it('case 9 recursive success', function () {
+  it('case 9 recursive success', function() {
     expect(
-      getImports(fs.readFileSync(__dirname + '/fixture/main.js').toString(), { from: __dirname + '/fixture/main.js' })
+      getImports(fs.readFileSync(__dirname + '/fixture/main.js').toString(), {
+        from: __dirname + '/fixture/main.js'
+      })
     ).toEqual([
       __dirname + '/fixture/' + 'A/a.js',
-      __dirname + '/fixture/' + 'B/b.js',
+      __dirname + '/fixture/' + 'B/b.jsx',
       __dirname + '/fixture/' + 'B/b-0.js'
     ])
   })
 
-  it('case 9 recursive: false success', function () {
+  it('case 9 recursive: false success', function() {
     expect(
-      getImports(fs.readFileSync(__dirname + '/fixture/main.js').toString(), { from: __dirname + '/fixture/main.js', recursive: false })
+      getImports(fs.readFileSync(__dirname + '/fixture/main.js').toString(), {
+        from: __dirname + '/fixture/main.js',
+        recursive: false
+      })
     ).toEqual([
       __dirname + '/fixture/' + 'A/a.js',
-      __dirname + '/fixture/' + 'B/b.js'
+      __dirname + '/fixture/' + 'B/b.jsx'
+    ])
+  })
+
+  it('should typescript recursively', function() {
+    const path = __dirname + '/fixture/ts-main.ts'
+    expect(
+      getImports(fs.readFileSync(path).toString(), {
+        from: path,
+        recursive: true,
+        moduleImport: false,
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+      })
+    ).toEqual([
+      __dirname + '/fixture/' + 'ts-A/a.tsx',
+      __dirname + '/fixture/' + 'ts-B/b.jsx',
+      __dirname + '/fixture/' + 'ts-A/aa.js'
+    ])
+  })
+
+  it('should typescript shallowly', function() {
+    const path = __dirname + '/fixture/ts-main.ts'
+    expect(
+      getImports(fs.readFileSync(path).toString(), {
+        from: path,
+        recursive: false,
+        moduleImport: false,
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+      })
+    ).toEqual([
+      __dirname + '/fixture/' + 'ts-A/a.tsx',
+      __dirname + '/fixture/' + 'ts-B/b.jsx'
     ])
   })
 })
