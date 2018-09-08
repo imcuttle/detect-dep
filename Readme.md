@@ -26,34 +26,36 @@ const dependencies = detectDep('some code')
 
 ### AST
 
-[lib/detectDep.js:67-147](https://github.com/imcuttle/detect-dep/blob/7ffccb0e44c896bb19cbfa2cef0511ff0ebe3250/lib/detectDep.js#L67-L147 'Source code on GitHub')
+[lib/detectDep.js:74-167](https://github.com/imcuttle/detect-dep/blob/4acb0d8b09b7aad57b3853f9ee77823c682414fc/lib/detectDep.js#L74-L167 "Source code on GitHub")
 
-- **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
-- **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
+-   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
+-   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ### detectDep
 
-[lib/detectDep.js:67-147](https://github.com/imcuttle/detect-dep/blob/7ffccb0e44c896bb19cbfa2cef0511ff0ebe3250/lib/detectDep.js#L67-L147 'Source code on GitHub')
+[lib/detectDep.js:74-167](https://github.com/imcuttle/detect-dep/blob/4acb0d8b09b7aad57b3853f9ee77823c682414fc/lib/detectDep.js#L74-L167 "Source code on GitHub")
 
 **Parameters**
 
-- `source` {String|AST}
-- `options` {Object}
-  - `options.es6Import` {Boolean}
-    whether detecting `import ...` or not (optional, default `true`)
-  - `options.requireImport` {Boolean}
-    whether detecting `require('...')` or not (optional, default `true`)
-  - `options.localImport` {Boolean}
-    whether requiring `require('./local/path')` or not (optional, default `true`)
-  - `options.moduleImport` {Boolean}
-    whether requiring `require('path')` or not (optional, default `true`)
-  - `options.from` {String}
-    where is the source from (filename) (optional, default `''`)
-  - `options.recursive` {boolean}
-    detecting the source recursively. (optional, default `true`)
-- `tracks`
+-   `source`  {String|AST}
+-   `options`  {Object}
+    -   `options.es6Import`  {Boolean}
+           whether detecting `import ...` or not (optional, default `true`)
+    -   `options.requireImport`  {Boolean}
+           whether detecting `require('...')` or not (optional, default `true`)
+    -   `options.localImport`  {Boolean}
+           whether requiring `require('./local/path')` or not (optional, default `true`)
+    -   `options.moduleImport`  {Boolean}
+           whether requiring `require('path')` or not (optional, default `true`)
+    -   `options.extensions`  {string\[]}
+           Which file with matching extension should be detected recursively (optional, default `['.js','.jsx','.ts','.tsx']`)
+    -   `options.from`  {String}
+           where is the source from  (filename) (optional, default `''`)
+    -   `options.recursive`  {boolean}
+           detecting the source recursively. (optional, default `true`)
+-   `tracks`  
 
 **Examples**
 
@@ -66,7 +68,7 @@ Returns **any** dependencies {String\[]} - dependencies list
 
 ## Related
 
-- [hot-module-require](https://github.com/imcuttle/hot-module-require) - Detect module's update recursively on Node.js
+-   [hot-module-require](https://github.com/imcuttle/hot-module-require) - Detect module's update recursively on Node.js
 
 ## License
 
