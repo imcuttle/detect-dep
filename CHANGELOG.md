@@ -1,3 +1,13 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/imcuttle/detect-dep/compare/v0.1.0...v0.2.0) (2018-09-08)
+
+
+### Features
+
+* add options.resolveExtensions ([1b0a17d](https://github.com/imcuttle/detect-dep/commit/1b0a17d))
+
+
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/imcuttle/detect-dep/compare/v0.0.1...v0.1.0) (2018-09-08)
 
