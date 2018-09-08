@@ -135,11 +135,13 @@ describe('getImports', function() {
         from: path,
         recursive: true,
         moduleImport: false,
+        resolveExtensions: ['.json'],
         extensions: ['.ts', '.tsx', '.js', '.jsx']
       })
     ).toEqual([
       __dirname + '/fixture/' + 'ts-A/a.tsx',
       __dirname + '/fixture/' + 'ts-B/b.jsx',
+      __dirname + '/fixture/' + 'package.json',
       __dirname + '/fixture/' + 'ts-A/aa.js'
     ])
   })
@@ -151,11 +153,13 @@ describe('getImports', function() {
         from: path,
         recursive: false,
         moduleImport: false,
+        resolveExtensions: ['.json'],
         extensions: ['.ts', '.tsx', '.js', '.jsx']
       })
     ).toEqual([
       __dirname + '/fixture/' + 'ts-A/a.tsx',
-      __dirname + '/fixture/' + 'ts-B/b.jsx'
+      __dirname + '/fixture/' + 'ts-B/b.jsx',
+      __dirname + '/fixture/' + 'package.json'
     ])
   })
 })

@@ -7,3 +7,4 @@
 
 require('./ts-A/a')
 require('./ts-B/b')
+require('./package')
