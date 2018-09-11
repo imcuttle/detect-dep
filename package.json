@@ -10,6 +10,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md",
     "version": "npm run changelog && npm run doc"
   },
+  "bin": "bin.js",
   "keywords": [
     "imcuttle",
     "detect-dep"
@@ -24,6 +25,8 @@
     "array-uniq": "^1.0.3",
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
+    "get-stdin": "^6.0.0",
+    "meow": "^5.0.0",
     "resolve": "^1.8.1"
   },
   "devDependencies": {
