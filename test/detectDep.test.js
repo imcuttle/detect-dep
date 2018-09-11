@@ -162,4 +162,26 @@ describe('getImports', function() {
       __dirname + '/fixture/' + 'package.json'
     ])
   })
+
+  it('should --no-return-absolute', function() {
+    const path = __dirname + '/fixture/main.js'
+    expect(
+      getImports(fs.readFileSync(path).toString(), {
+        from: path,
+        recursive: true,
+        returnAbsolutePath: false
+      })
+    ).toEqual(['./A/a.js', './B/b', '../B/b', './b-0', '../A/a'])
+  })
+
+  it('should --no-return-absolute even error', function() {
+    const path = __dirname + '/fixture/error-shallow.js'
+    expect(
+      getImports(fs.readFileSync(path).toString(), {
+        from: path,
+        recursive: false,
+        returnAbsolutePath: false
+      })
+    ).toEqual(['./A/b.js', './A/aaa.js', './A/vvv.js'])
+  })
 })

@@ -47,8 +47,10 @@ const cli = meow(
       
       --no-recursive           Detecting the source shallowly
                                [Default: ${!defaultOpts.recursive}]
+
+      --no-return-absolute     Return the origin module id from code 
+                               [Default: ${!defaultOpts.returnAbsolutePath}]
                                
- 
     Examples
       $ cat file.js | detect-dep --from file.js
       $ detect-dep file.js
@@ -89,10 +91,32 @@ const cli = meow(
       noRecursive: {
         type: 'boolean',
         default: !defaultOpts.recursive
+      },
+      noReturnAbsolute: {
+        type: 'boolean',
+        default: !defaultOpts.returnAbsolutePath
       }
     }
   }
 )
+
+const opts = {}
+;[
+  'noRequireImport',
+  'noEs6Import',
+  'noLocalImport',
+  'noModImport',
+  'noRecursive',
+  'noReturnAbsolute'
+].forEach(key => {
+  let name = key.slice(2)
+  name = name[0].toLowerCase() + name.slice(1)
+  if (cli.flags.hasOwnProperty(name)) {
+    opts[name] = cli.flags[name]
+  } else {
+    opts[name] = !cli.flags[key]
+  }
+})
 
 function run(content, filename) {
   if (!content) {
@@ -102,11 +126,12 @@ function run(content, filename) {
   }
 
   const deps = detectDep(content, {
-    es6Import: !cli.flags.noEs6Import,
-    localImport: !cli.flags.noLocalImport,
-    requireImport: !cli.flags.noRequireImport,
-    moduleImport: !cli.flags.noModImport,
-    recursive: !cli.flags.noRecursive,
+    es6Import: opts.es6Import,
+    localImport: opts.localImport,
+    requireImport: opts.requireImport,
+    moduleImport: opts.modImport,
+    returnAbsolutePath: opts.returnAbsolute,
+    recursive: opts.recursive,
     from: filename,
     extensions: cli.flags.extensions.split(','),
     resolveExtensions: cli.flags.resolveExtensions.split(',')
@@ -117,6 +142,7 @@ function run(content, filename) {
   }
   console.log('  ' + deps.join('\n  ') + '\n')
 }
+
 
 if (cli.input.length) {
   cli.input.forEach(filename => {
