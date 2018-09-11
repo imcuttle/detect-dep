@@ -34,7 +34,7 @@ detect-dep --version
 
 ### AST
 
-[lib/detectDep.js:76-171](https://github.com/imcuttle/detect-dep/blob/0319b2ace09658624e5fd2b563109120e3d90dcf/lib/detectDep.js#L76-L171 "Source code on GitHub")
+[lib/detectDep.js:79-178](https://github.com/imcuttle/detect-dep/blob/d178e818c0669d143c449caf8789af305ecce3f5/lib/detectDep.js#L79-L178 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -43,7 +43,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:76-171](https://github.com/imcuttle/detect-dep/blob/0319b2ace09658624e5fd2b563109120e3d90dcf/lib/detectDep.js#L76-L171 "Source code on GitHub")
+[lib/detectDep.js:79-178](https://github.com/imcuttle/detect-dep/blob/d178e818c0669d143c449caf8789af305ecce3f5/lib/detectDep.js#L79-L178 "Source code on GitHub")
 
 **Parameters**
 
@@ -65,6 +65,8 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
            where is the source come from  (filename) (optional, default `''`)
     -   `options.recursive`  {boolean}
            detecting the source recursively. (optional, default `true`)
+    -   `options.returnAbsolutePath`  {boolean}
+           whether returning the local module's absolute path, or use real module id instead. (optional, default `true`)
 -   `tracks`  
 
 **Examples**
