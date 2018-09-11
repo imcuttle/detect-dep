@@ -6,7 +6,7 @@
  *
  */
 const meow = require('meow')
-const getStdin = require('get-stdin')
+const concat = require('concat-stream')
 const fs = require('fs')
 
 const detectDep = require('./index')
@@ -96,7 +96,9 @@ const cli = meow(
 
 function run(content, filename) {
   if (!content) {
-    throw new Error(`The content ${filename ? `from file '${filename}' ` : ''}is empty`)
+    throw new Error(
+      `The content ${filename ? `from file '${filename}' ` : ''}is empty`
+    )
   }
 
   const deps = detectDep(content, {
@@ -121,7 +123,9 @@ if (cli.input.length) {
     run(fs.readFileSync(filename, { encoding: 'utf8' }), filename)
   })
 } else {
-  getStdin().then(content => {
-    run(content, cli.flags.from)
-  })
+  process.stdin.pipe(
+    concat(function(buf) {
+      run(buf.toString(), cli.flags.from)
+    })
+  )
 }

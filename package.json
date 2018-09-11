@@ -25,7 +25,7 @@
     "array-uniq": "^1.0.3",
     "babel-traverse": "^6.26.0",
     "babylon": "^6.18.0",
-    "get-stdin": "^6.0.0",
+    "concat-stream": "^1.6.2",
     "meow": "^5.0.0",
     "resolve": "^1.8.1"
   },
