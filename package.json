@@ -1,6 +1,6 @@
 {
   "name": "detect-dep",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Detect the dependencies of import/require by walking AST",
   "main": "index.js",
   "scripts": {
