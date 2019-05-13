@@ -1,3 +1,13 @@
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/imcuttle/detect-dep/compare/v0.3.1...v0.3.2) (2019-05-13)
+
+
+### Bug Fixes
+
+* strip self path ([4bab1bd](https://github.com/imcuttle/detect-dep/commit/4bab1bd))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/imcuttle/detect-dep/compare/v0.3.0...v0.3.1) (2018-09-11)
 
