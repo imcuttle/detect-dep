@@ -34,7 +34,7 @@ detect-dep --version
 
 ### AST
 
-[lib/detectDep.js:79-178](https://github.com/imcuttle/detect-dep/blob/d178e818c0669d143c449caf8789af305ecce3f5/lib/detectDep.js#L79-L178 "Source code on GitHub")
+[lib/detectDep.js:79-181](https://github.com/imcuttle/detect-dep/blob/4bab1bdc7ebc8ddcd0099e311c0dd2574a953b1a/lib/detectDep.js#L79-L181 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -43,7 +43,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:79-178](https://github.com/imcuttle/detect-dep/blob/d178e818c0669d143c449caf8789af305ecce3f5/lib/detectDep.js#L79-L178 "Source code on GitHub")
+[lib/detectDep.js:79-181](https://github.com/imcuttle/detect-dep/blob/4bab1bdc7ebc8ddcd0099e311c0dd2574a953b1a/lib/detectDep.js#L79-L181 "Source code on GitHub")
 
 **Parameters**
 
