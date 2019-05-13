@@ -128,6 +128,19 @@ describe('getImports', function() {
     ])
   })
 
+
+  it('case 10 with circle', function() {
+    expect(
+      getImports(fs.readFileSync(__dirname + '/fixture/circle/index.js').toString(), {
+        from: __dirname + '/fixture/circle/index.js',
+        recursive: true
+      })
+    ).toEqual([
+      __dirname + '/fixture/' + 'circle/a.js',
+      __dirname + '/fixture/' + 'circle/b.js'
+    ])
+  })
+
   it('should typescript recursively', function() {
     const path = __dirname + '/fixture/ts-main.ts'
     expect(
