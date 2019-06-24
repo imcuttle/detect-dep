@@ -34,7 +34,7 @@ detect-dep --version
 
 ### AST
 
-[lib/detectDep.js:80-82](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L80-L82 "Source code on GitHub")
+[lib/detectDep.js:80-82](https://github.com/imcuttle/detect-dep/blob/d7fc3e4bd0560b84a77b2f9712ba7c04199d42e1/lib/detectDep.js#L80-L82 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -43,7 +43,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:80-82](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L80-L82 "Source code on GitHub")
+[lib/detectDep.js:80-82](https://github.com/imcuttle/detect-dep/blob/d7fc3e4bd0560b84a77b2f9712ba7c04199d42e1/lib/detectDep.js#L80-L82 "Source code on GitHub")
 
 **Parameters**
 
@@ -81,13 +81,13 @@ Returns **any** dependencies {String\[]} - dependencies list
 
 ### Module
 
-[lib/detectDep.js:205-236](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L205-L236 "Source code on GitHub")
+[lib/detectDep.js:205-236](https://github.com/imcuttle/detect-dep/blob/d7fc3e4bd0560b84a77b2f9712ba7c04199d42e1/lib/detectDep.js#L205-L236 "Source code on GitHub")
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ### tree
 
-[lib/detectDep.js:205-236](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L205-L236 "Source code on GitHub")
+[lib/detectDep.js:205-236](https://github.com/imcuttle/detect-dep/blob/d7fc3e4bd0560b84a77b2f9712ba7c04199d42e1/lib/detectDep.js#L205-L236 "Source code on GitHub")
 
 **Parameters**
 
