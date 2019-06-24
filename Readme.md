@@ -34,7 +34,7 @@ detect-dep --version
 
 ### AST
 
-[lib/detectDep.js:79-181](https://github.com/imcuttle/detect-dep/blob/4bab1bdc7ebc8ddcd0099e311c0dd2574a953b1a/lib/detectDep.js#L79-L181 "Source code on GitHub")
+[lib/detectDep.js:80-82](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L80-L82 "Source code on GitHub")
 
 -   **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)**
 -   **See: [babylon](https://github.com/babel/babel/tree/master/packages/babylon)**
@@ -43,7 +43,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/detectDep.js:79-181](https://github.com/imcuttle/detect-dep/blob/4bab1bdc7ebc8ddcd0099e311c0dd2574a953b1a/lib/detectDep.js#L79-L181 "Source code on GitHub")
+[lib/detectDep.js:80-82](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L80-L82 "Source code on GitHub")
 
 **Parameters**
 
@@ -64,10 +64,11 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
     -   `options.from`  {String}
            where is the source come from  (filename) (optional, default `''`)
     -   `options.recursive`  {boolean}
-           detecting the source recursively. (optional, default `true`)
+           Detecting the source recursively. (optional, default `true`)
+    -   `options.resolver`  {(source, options) => string\[]}
+           The core method for resolving dependencies. (optional, default `require('./resolver')`)
     -   `options.returnAbsolutePath`  {boolean}
            whether returning the local module's absolute path, or use real module id instead. (optional, default `true`)
--   `tracks`  
 
 **Examples**
 
@@ -77,6 +78,40 @@ const dependencies = detectDep('some code', {})
 ```
 
 Returns **any** dependencies {String\[]} - dependencies list
+
+### Module
+
+[lib/detectDep.js:205-236](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L205-L236 "Source code on GitHub")
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
+### tree
+
+[lib/detectDep.js:205-236](https://github.com/imcuttle/detect-dep/blob/d53105706e745b3c8c17e5e09bfb83b0b369b4b1/lib/detectDep.js#L205-L236 "Source code on GitHub")
+
+**Parameters**
+
+-   `path`  {string}
+-   `opts`  See `detectDep`
+
+**Examples**
+
+```javascript
+const detectDep = require('detect-dep')
+const moduleTree = detectDep.tree('/path/to/file')
+
+{
+  id: '/path/to/file',
+  children: [
+    {
+      id: '/path/to/file/a.js',
+      children: []
+    }
+  ]
+}
+```
+
+Returns **[Module](#module)** 
 
 ## Related
 
