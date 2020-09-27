@@ -4,11 +4,19 @@
  * @date 2018/2/20
  * @description
  */
-var fs = require('fs')
-var getImports = require('../lib/detectDep')
+const fs = require('fs')
+const getImports = require('../lib/detectDep')
 
 function c(lines) {
   return lines.join('\n')
+}
+
+const getImportsFromPath = (path, opts) => {
+  path = __dirname + '/fixture/' + path
+  return getImports(fs.readFileSync(path).toString(), {
+    from: path,
+    ...opts
+  })
 }
 
 describe('getImports', function() {
@@ -177,10 +185,8 @@ describe('getImports', function() {
   })
 
   it('should --no-return-absolute', function() {
-    const path = __dirname + '/fixture/main.js'
     expect(
-      getImports(fs.readFileSync(path).toString(), {
-        from: path,
+      getImportsFromPath('main.js', {
         recursive: true,
         returnAbsolutePath: false
       })
@@ -188,13 +194,24 @@ describe('getImports', function() {
   })
 
   it('should --no-return-absolute even error', function() {
-    const path = __dirname + '/fixture/error-shallow.js'
     expect(
-      getImports(fs.readFileSync(path).toString(), {
-        from: path,
+      getImportsFromPath('error-shallow.js', {
         recursive: false,
         returnAbsolutePath: false
       })
     ).toEqual(['./A/b.js', './A/aaa.js', './A/vvv.js'])
+  })
+
+  it('should es module works fine', function() {
+    expect(
+      getImportsFromPath('es/export.js', {
+        returnAbsolutePath: false,
+        recursive: false
+      })
+    ).toEqual([
+      './a',
+      './b',
+      './c'
+    ])
   })
 })
