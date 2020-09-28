@@ -59,6 +59,7 @@ export default function resolver(source: string | import('@babel/types').File, o
         }
         // require.context()
         else if (
+          options.requireContext &&
           type === 'MemberExpression' &&
           object.type === 'Identifier' &&
           object.name === 'require' &&
