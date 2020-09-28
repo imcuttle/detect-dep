@@ -88,7 +88,7 @@ function getOpts(options: DetectDepOpts) {
  * @todo options.allowWithoutExports {Boolean} true
  * @returns dependencies {String[]} - dependencies list
  * @example
- * const detectDep = require('detect-dep')
+ * const {detectDep} = require('detect-dep')
  * const dependencies = detectDep('some code', {})
  */
 export function detectDep(source, options?: DetectDepOpts) {
@@ -203,8 +203,8 @@ function detectDepInner(source, options: DetectDepOpts = {}, { tracks = [], chec
  * @param path {string}
  * @param options - See `detectDep`
  * @example
- * const detectDep = require('detect-dep')
- * const moduleTree = detectDep.tree('/path/to/file')
+ * const {tree} = require('detect-dep')
+ * const moduleTree = tree('/path/to/file')
  *
  * {
  *   id: '/path/to/file',
