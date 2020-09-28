@@ -7,41 +7,7 @@
 import * as defaultFS from 'fs'
 import * as resolve from 'resolve'
 import * as browserResolve from 'browser-resolve'
-
-const getOptsFromFs = (fs) => {
-  return {
-    readFileSync: fs.readFileSync.bind(fs),
-    isFile: function isFile(file) {
-      try {
-        var stat = fs.statSync(file)
-      } catch (e) {
-        if (e && (e.code === 'ENOENT' || e.code === 'ENOTDIR')) return false
-        throw e
-      }
-      return stat.isFile() || stat.isFIFO()
-    },
-    isDirectory: function isDirectory(dir) {
-      try {
-        var stat = fs.statSync(dir)
-      } catch (e) {
-        if (e && (e.code === 'ENOENT' || e.code === 'ENOTDIR')) return false
-        throw e
-      }
-      return stat.isDirectory()
-    },
-    realpathSync: function realpathSync(file) {
-      try {
-        var realpath = typeof fs.realpathSync.native === 'function' ? fs.realpathSync.native : fs.realpathSync
-        return realpath(file)
-      } catch (realPathErr) {
-        if (realPathErr.code !== 'ENOENT') {
-          throw realPathErr
-        }
-      }
-      return file
-    }
-  }
-}
+import { getOptsFromFs } from './resolver/utils'
 
 export type ResolvePathOpts = resolve.Opts & {
   browser?: boolean
@@ -61,7 +27,6 @@ function resolvePath(path, { fs = defaultFS, browser = false, ...syncOpts }: Res
   if (browser) {
     return browserResolve.sync(path, resolveOpts)
   }
-
   return resolve.sync(path, resolveOpts)
 }
 

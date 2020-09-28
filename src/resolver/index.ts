@@ -7,8 +7,33 @@
 import { DetectDepOpts } from '../index'
 import parseToAst from './parseToAst'
 import traverse from '@babel/traverse'
+import parseRequest from './parseRequest'
+import { findMatchFiles } from './utils'
 
-module.exports = (source: string | import('@babel/types').File, options: DetectDepOpts = {}) => {
+export const resolveDependencies = (node: import('@babel/types').Node, options: DetectDepOpts, path) => {
+  try {
+    const output = parseRequest(node, { mergeRaw: true })
+    // Just supports `require('./context' + name)`
+    if (!output.length || output[0].type !== 'raw') {
+      return []
+    }
+    if (output.length === 1) {
+      return [output[0].value]
+    }
+
+    const [head] = output
+    const tail = output[output.length - 1]
+    return findMatchFiles(head.value, true, tail.type === 'raw' ? tail.value : null, options)
+  } catch (err) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.error(`Error happened in code: \`${String(path)}\`, filename: ${options.from}`)
+      console.error(err)
+    }
+    return []
+  }
+}
+
+export default function resolver(source: string | import('@babel/types').File, options: DetectDepOpts = {}) {
   const ast = typeof source !== 'string' ? source : parseToAst(source, options.parserOpts)
   const holder = { result: [] }
 
@@ -16,44 +41,67 @@ module.exports = (source: string | import('@babel/types').File, options: DetectD
     ast,
     {
       CallExpression(path: any, state) {
-        const { name, type } = path.get('callee').node
+        const { name, type, object, property } = path.get('callee').node
         const args = path.node.arguments
         // require('./foo')
         if (options.requireImport && name === 'require') {
-          if (args && !!args.length && args[0].value) {
-            state.result.push(args[0].value)
+          if (args && !!args.length) {
+            const requestChunks = resolveDependencies(args[0], options, path)
+            state.result = state.result.concat(requestChunks)
           }
         }
-
         // import('./foo')
-        if (options.dynamicImport && type === 'import') {
+        else if (options.dynamicImport && type === 'Import') {
           if (args && !!args.length) {
-            // import(`./foo/${name}`);
-            if (args[0].type === 'TemplateLiteral') {
-            }
-            // import('./foo');
-            else if (args[0].type === 'StringLiteral') {
-              state.result.push(args[0].value)
-            }
+            const requestChunks = resolveDependencies(args[0], options, path)
+            state.result = state.result.concat(requestChunks)
           }
+        }
+        // require.context()
+        else if (
+          type === 'MemberExpression' &&
+          object.type === 'Identifier' &&
+          object.name === 'require' &&
+          property.type === 'Identifier' &&
+          property.name === 'context'
+        ) {
+          const [contextNode, recursiveNode, regNode] = args
+          const chunks = parseRequest(contextNode, { mergeRaw: true })
+          if (chunks.length !== 1 || !chunks[0] || chunks[0].type !== 'raw') {
+            return
+          }
+          if (recursiveNode && recursiveNode.type !== 'BooleanLiteral') {
+            return
+          }
+          if (regNode && regNode.type !== 'RegExpLiteral') {
+            return
+          }
+
+          const requestChunks = findMatchFiles(
+            chunks[0].value,
+            recursiveNode ? recursiveNode.value : false,
+            regNode ? new RegExp(regNode.pattern, regNode.flags) : /^\./,
+            options
+          )
+          state.result = state.result.concat(requestChunks)
         }
       },
       ImportDeclaration(path, state) {
-        if (!options.es6Import) {
+        if (!options.esImport) {
           return
         }
         const source = path.get('source')
         state.result.push(source.node.value)
       },
       ExportAllDeclaration(path, state) {
-        if (!options.es6Export) {
+        if (!options.esExport) {
           return
         }
         const source = path.get('source')
         state.result.push(source.node.value)
       },
       ExportNamedDeclaration(path, state) {
-        if (!options.es6Export) {
+        if (!options.esExport) {
           return
         }
         const source = path.get('source')

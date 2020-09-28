@@ -8,46 +8,36 @@ import * as nps from 'path'
 import * as defaultFs from 'fs'
 import resolvePath, { ResolvePathOpts } from './resolvePath'
 import { ParserOptions } from '@babel/parser'
+import { isLocalPath, isModulePath } from './resolver/utils'
 const uniq = require('array-uniq')
-
-function isModulePath(path) {
-  return !isLocalPath(path)
-}
-
-function isLocalPath(path) {
-  path = path || ''
-  path = path.trim()
-
-  return nps.isAbsolute(path) || path.startsWith('.')
-}
 
 export const defaultOpts = {
   fs: defaultFs,
-  es6Import: true,
-  es6Export: true,
-  es6: true,
+  esImport: true,
+  esExport: true,
+  esModule: true,
+  dynamicImport: true,
   requireImport: true,
   localImport: true,
   moduleImport: true,
-  dynamicImport: true,
   allowWithoutExports: true,
   returnAbsolutePath: true,
   from: null,
   recursive: true,
-  resolver: require('./resolver'),
+  resolver: require('./resolver').default,
   resolveExtensions: Object.keys(require.extensions),
   extensions: ['.js', '.jsx', '.node', '.json']
 }
 
 export type DetectDepOpts = Partial<typeof defaultOpts> &
-  ResolvePathOpts & {
+  Omit<ResolvePathOpts, 'basedir'> & {
     parserOpts?: ParserOptions
   }
 
 function getOpts(options: DetectDepOpts) {
   options = Object.assign({}, defaultOpts, options)
-  if (!options.es6) {
-    options.es6Import = options.es6Export = options.dynamicImport = false
+  if (!options.esModule) {
+    options.esImport = options.esExport = options.dynamicImport = false
   }
 
   return options
@@ -96,6 +86,15 @@ export function detectDep(source, options?: DetectDepOpts) {
   return detectDepInner(source, options, { tracks: [], checkExtension: false })
 }
 
+export function detectDepFileSync(filename, options?: Omit<DetectDepOpts, 'from'>) {
+  options = getOpts(options)
+  return detectDepInner(
+    String(options.fs.readFileSync(filename)),
+    { ...options, from: filename },
+    { tracks: [], checkExtension: false }
+  )
+}
+
 function detectDepInner(source, options: DetectDepOpts = {}, { tracks = [], checkExtension = true } = {}) {
   options = getOpts(options)
   const { fs = defaultFs } = options
@@ -118,13 +117,16 @@ function detectDepInner(source, options: DetectDepOpts = {}, { tracks = [], chec
         const local = resolvePath(path, {
           ...options,
           fs,
+          // @ts-ignore
+          filename: options.from,
           basedir: nps.dirname(options.from),
           extensions: resolveExtensions
         })
         if (!tracks.includes(local) && options.extensions.indexOf(nps.extname(local)) >= 0) {
           tracks.push(local)
+
           newPaths = newPaths.concat(
-            detectDepInner(fs.readFileSync(local).toString(), Object.assign({}, options, { from: local }), {
+            detectDepInner(String(fs.readFileSync(local)), Object.assign({}, options, { from: local }), {
               checkExtension,
               tracks
             })
@@ -160,6 +162,8 @@ function detectDepInner(source, options: DetectDepOpts = {}, { tracks = [], chec
       absolutePath = resolvePath(path, {
         ...options,
         fs,
+        // @ts-ignore  提示用
+        filename: options.from,
         basedir: nps.dirname(options.from),
         extensions: resolveExtensions
       })
@@ -197,7 +201,7 @@ function detectDepInner(source, options: DetectDepOpts = {}, { tracks = [], chec
  *   id: '/path/to/file',
  *   children: [
  *     {
- *       id: '/path/to/file/a.js',
+ *       id: '/path/to/file/b.jsx',
  *       children: []
  *     }
  *   ]

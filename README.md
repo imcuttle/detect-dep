@@ -9,6 +9,8 @@
 
 > Detect the dependencies by walking AST
 
+**Support detecting dynamic import and `require.context`**
+
 ## Installation
 
 ```bash

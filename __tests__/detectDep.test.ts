@@ -5,7 +5,7 @@
  * @description
  */
 import * as fs from 'fs'
-import { detectDep as getImports } from '../src'
+import { detectDep as getImports, detectDepFileSync } from '../src'
 
 function c(lines) {
   return lines.join('\n')
@@ -27,7 +27,7 @@ describe('getImports', function () {
   it('case 2', function () {
     expect(
       getImports(c(['import a from "a"', 'import b from "bbb"']), {
-        es6Import: false
+        esImport: false
       })
     ).toEqual([])
   })
@@ -166,5 +166,31 @@ describe('getImports', function () {
         recursive: false
       })
     ).toEqual(['./a', './b', './c'])
+  })
+
+  it('esModule - dynamic import without `from`', function () {
+    expect(
+      getImports(c([`import('./foo')`, `import('./foo/' + name)`, 'import(`./foo-template/${name}`)']), {
+        esModule: true
+      })
+    ).toEqual(['./foo'])
+  })
+
+  it('esModule - dynamic import with `from`', function () {
+    expect(
+      detectDepFileSync(__dirname + '/fixture/es/dynamic-import.js', { esModule: true, returnAbsolutePath: false })
+    ).toEqual(['foo', './foo/foo-child.js', './foo-template/foo-template-child.js'])
+  })
+
+  it('require-context', function () {
+    expect(detectDepFileSync(__dirname + '/fixture/es/require-context.js', { returnAbsolutePath: false })).toEqual([
+      './a.png'
+    ])
+  })
+
+  it('require-context-deep', function () {
+    expect(
+      detectDepFileSync(__dirname + '/fixture/es/require-context-deep.js', { returnAbsolutePath: false })
+    ).toEqual(['./a.png', './foo/a.png', './foo-template/a.png'])
   })
 })
