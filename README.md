@@ -42,7 +42,7 @@ detect-dep --version
 
 ### AST
 
-[lib/index.js:88-90](https://github.com/imcuttle/detect-dep/blob/d512c4b41236344cd47bf500e50fe8fbce10d560/lib/index.js#L50-L56 'Source code on GitHub')
+[lib/index.js:97-99](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L51-L57 'Source code on GitHub')
 
 - **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
   **
@@ -53,13 +53,21 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/index.js:88-90](https://github.com/imcuttle/detect-dep/blob/d512c4b41236344cd47bf500e50fe8fbce10d560/lib/index.js#L88-L90 'Source code on GitHub')
+[lib/index.js:97-99](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L97-L99 'Source code on GitHub')
 
 #### Parameters
 
 - `source` {String|AST}
 - `options` {Object}
-  - `options.es6Import` {Boolean}
+  - `options.esModule` {Boolean}
+    Disable `esExport` `esImport` `dynamicImport` when is falsy (optional, default `true`)
+  - `options.requireContext` {Boolean}
+    whether detecting `require.context('./root', false, /\.jsx?$/)` or not (optional, default `true`)
+  - `options.dynamicImport` {Boolean}
+    whether detecting `import('./foo')` `import('./foo/' + name)` or not (optional, default `true`)
+  - `options.esExport` {Boolean}
+    whether detecting `export xx from 'xxx'` or not (optional, default `true`)
+  - `options.esImport` {Boolean}
     whether detecting `import ...` or not (optional, default `true`)
   - `options.requireImport` {Boolean}
     whether detecting `require('...')` or not (optional, default `true`)
@@ -91,13 +99,13 @@ Returns **any** dependencies {String\[]} - dependencies list
 
 ### Module
 
-[lib/index.js:187-205](https://github.com/imcuttle/detect-dep/blob/d512c4b41236344cd47bf500e50fe8fbce10d560/lib/index.js#L161-L167 'Source code on GitHub')
+[lib/index.js:196-214](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L170-L176 'Source code on GitHub')
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ### tree
 
-[lib/index.js:187-205](https://github.com/imcuttle/detect-dep/blob/d512c4b41236344cd47bf500e50fe8fbce10d560/lib/index.js#L187-L205 'Source code on GitHub')
+[lib/index.js:196-214](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L196-L214 'Source code on GitHub')
 
 #### Parameters
 
