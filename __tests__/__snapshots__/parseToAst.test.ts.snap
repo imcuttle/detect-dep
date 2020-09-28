@@ -1,0 +1,525 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseToAst JSX 1`] = `
+Node {
+  "comments": Array [],
+  "end": 47,
+  "errors": Array [],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 21,
+      "line": 2,
+    },
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "program": Node {
+    "body": Array [
+      Node {
+        "end": 25,
+        "importKind": "value",
+        "loc": SourceLocation {
+          "end": Position {
+            "column": 25,
+            "line": 1,
+          },
+          "start": Position {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "source": Node {
+          "end": 25,
+          "extra": Object {
+            "raw": "'react'",
+            "rawValue": "react",
+          },
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 25,
+              "line": 1,
+            },
+            "start": Position {
+              "column": 18,
+              "line": 1,
+            },
+          },
+          "start": 18,
+          "type": "StringLiteral",
+          "value": "react",
+        },
+        "specifiers": Array [
+          Node {
+            "end": 12,
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 12,
+                "line": 1,
+              },
+              "start": Position {
+                "column": 7,
+                "line": 1,
+              },
+            },
+            "local": Node {
+              "end": 12,
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 12,
+                  "line": 1,
+                },
+                "identifierName": "React",
+                "start": Position {
+                  "column": 7,
+                  "line": 1,
+                },
+              },
+              "name": "React",
+              "start": 7,
+              "type": "Identifier",
+            },
+            "start": 7,
+            "type": "ImportDefaultSpecifier",
+          },
+        ],
+        "start": 0,
+        "type": "ImportDeclaration",
+      },
+      Node {
+        "declarations": Array [
+          Node {
+            "end": 47,
+            "id": Node {
+              "end": 33,
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 7,
+                  "line": 2,
+                },
+                "identifierName": "a",
+                "start": Position {
+                  "column": 6,
+                  "line": 2,
+                },
+              },
+              "name": "a",
+              "start": 32,
+              "type": "Identifier",
+            },
+            "init": Node {
+              "children": Array [],
+              "closingElement": Node {
+                "end": 47,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 21,
+                    "line": 2,
+                  },
+                  "start": Position {
+                    "column": 15,
+                    "line": 2,
+                  },
+                },
+                "name": Node {
+                  "end": 46,
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 20,
+                      "line": 2,
+                    },
+                    "start": Position {
+                      "column": 17,
+                      "line": 2,
+                    },
+                  },
+                  "name": "div",
+                  "start": 43,
+                  "type": "JSXIdentifier",
+                },
+                "start": 41,
+                "type": "JSXClosingElement",
+              },
+              "end": 47,
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 21,
+                  "line": 2,
+                },
+                "start": Position {
+                  "column": 10,
+                  "line": 2,
+                },
+              },
+              "openingElement": Node {
+                "attributes": Array [],
+                "end": 41,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 15,
+                    "line": 2,
+                  },
+                  "start": Position {
+                    "column": 10,
+                    "line": 2,
+                  },
+                },
+                "name": Node {
+                  "end": 40,
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 14,
+                      "line": 2,
+                    },
+                    "start": Position {
+                      "column": 11,
+                      "line": 2,
+                    },
+                  },
+                  "name": "div",
+                  "start": 37,
+                  "type": "JSXIdentifier",
+                },
+                "selfClosing": false,
+                "start": 36,
+                "type": "JSXOpeningElement",
+              },
+              "start": 36,
+              "type": "JSXElement",
+            },
+            "loc": SourceLocation {
+              "end": Position {
+                "column": 21,
+                "line": 2,
+              },
+              "start": Position {
+                "column": 6,
+                "line": 2,
+              },
+            },
+            "start": 32,
+            "type": "VariableDeclarator",
+          },
+        ],
+        "end": 47,
+        "kind": "const",
+        "loc": SourceLocation {
+          "end": Position {
+            "column": 21,
+            "line": 2,
+          },
+          "start": Position {
+            "column": 0,
+            "line": 2,
+          },
+        },
+        "start": 26,
+        "type": "VariableDeclaration",
+      },
+    ],
+    "directives": Array [],
+    "end": 47,
+    "interpreter": null,
+    "loc": SourceLocation {
+      "end": Position {
+        "column": 21,
+        "line": 2,
+      },
+      "start": Position {
+        "column": 0,
+        "line": 1,
+      },
+    },
+    "sourceType": "module",
+    "start": 0,
+    "type": "Program",
+  },
+  "start": 0,
+  "type": "File",
+}
+`;
+
+exports[`parseToAst classProperties 1`] = `
+Node {
+  "comments": Array [],
+  "end": 60,
+  "errors": Array [],
+  "loc": SourceLocation {
+    "end": Position {
+      "column": 1,
+      "line": 5,
+    },
+    "start": Position {
+      "column": 0,
+      "line": 1,
+    },
+  },
+  "program": Node {
+    "body": Array [
+      Node {
+        "body": Node {
+          "body": Array [
+            Node {
+              "computed": false,
+              "end": 20,
+              "key": Node {
+                "end": 16,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 3,
+                    "line": 2,
+                  },
+                  "identifierName": "a",
+                  "start": Position {
+                    "column": 2,
+                    "line": 2,
+                  },
+                },
+                "name": "a",
+                "start": 15,
+                "type": "Identifier",
+              },
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 7,
+                  "line": 2,
+                },
+                "start": Position {
+                  "column": 2,
+                  "line": 2,
+                },
+              },
+              "start": 15,
+              "static": false,
+              "type": "ClassProperty",
+              "value": Node {
+                "end": 20,
+                "extra": Object {
+                  "raw": "2",
+                  "rawValue": 2,
+                },
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 7,
+                    "line": 2,
+                  },
+                  "start": Position {
+                    "column": 6,
+                    "line": 2,
+                  },
+                },
+                "start": 19,
+                "type": "NumericLiteral",
+                "value": 2,
+              },
+            },
+            Node {
+              "computed": false,
+              "end": 36,
+              "key": Node {
+                "end": 25,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 4,
+                    "line": 3,
+                  },
+                  "identifierName": "ab",
+                  "start": Position {
+                    "column": 2,
+                    "line": 3,
+                  },
+                },
+                "name": "ab",
+                "start": 23,
+                "type": "Identifier",
+              },
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 15,
+                  "line": 3,
+                },
+                "start": Position {
+                  "column": 2,
+                  "line": 3,
+                },
+              },
+              "start": 23,
+              "static": false,
+              "type": "ClassProperty",
+              "value": Node {
+                "async": false,
+                "body": Node {
+                  "body": Array [],
+                  "directives": Array [],
+                  "end": 36,
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 15,
+                      "line": 3,
+                    },
+                    "start": Position {
+                      "column": 13,
+                      "line": 3,
+                    },
+                  },
+                  "start": 34,
+                  "type": "BlockStatement",
+                },
+                "end": 36,
+                "generator": false,
+                "id": null,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 15,
+                    "line": 3,
+                  },
+                  "start": Position {
+                    "column": 7,
+                    "line": 3,
+                  },
+                },
+                "params": Array [],
+                "start": 28,
+                "type": "ArrowFunctionExpression",
+              },
+            },
+            Node {
+              "computed": false,
+              "end": 58,
+              "key": Node {
+                "end": 47,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 10,
+                    "line": 4,
+                  },
+                  "identifierName": "v",
+                  "start": Position {
+                    "column": 9,
+                    "line": 4,
+                  },
+                },
+                "name": "v",
+                "start": 46,
+                "type": "Identifier",
+              },
+              "loc": SourceLocation {
+                "end": Position {
+                  "column": 21,
+                  "line": 4,
+                },
+                "start": Position {
+                  "column": 2,
+                  "line": 4,
+                },
+              },
+              "start": 39,
+              "static": true,
+              "type": "ClassProperty",
+              "value": Node {
+                "async": false,
+                "body": Node {
+                  "body": Array [],
+                  "directives": Array [],
+                  "end": 58,
+                  "loc": SourceLocation {
+                    "end": Position {
+                      "column": 21,
+                      "line": 4,
+                    },
+                    "start": Position {
+                      "column": 19,
+                      "line": 4,
+                    },
+                  },
+                  "start": 56,
+                  "type": "BlockStatement",
+                },
+                "end": 58,
+                "generator": false,
+                "id": null,
+                "loc": SourceLocation {
+                  "end": Position {
+                    "column": 21,
+                    "line": 4,
+                  },
+                  "start": Position {
+                    "column": 13,
+                    "line": 4,
+                  },
+                },
+                "params": Array [],
+                "start": 50,
+                "type": "ArrowFunctionExpression",
+              },
+            },
+          ],
+          "end": 60,
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 1,
+              "line": 5,
+            },
+            "start": Position {
+              "column": 11,
+              "line": 1,
+            },
+          },
+          "start": 11,
+          "type": "ClassBody",
+        },
+        "end": 60,
+        "id": Node {
+          "end": 10,
+          "loc": SourceLocation {
+            "end": Position {
+              "column": 10,
+              "line": 1,
+            },
+            "identifierName": "View",
+            "start": Position {
+              "column": 6,
+              "line": 1,
+            },
+          },
+          "name": "View",
+          "start": 6,
+          "type": "Identifier",
+        },
+        "loc": SourceLocation {
+          "end": Position {
+            "column": 1,
+            "line": 5,
+          },
+          "start": Position {
+            "column": 0,
+            "line": 1,
+          },
+        },
+        "start": 0,
+        "superClass": null,
+        "type": "ClassDeclaration",
+      },
+    ],
+    "directives": Array [],
+    "end": 60,
+    "interpreter": null,
+    "loc": SourceLocation {
+      "end": Position {
+        "column": 1,
+        "line": 5,
+      },
+      "start": Position {
+        "column": 0,
+        "line": 1,
+      },
+    },
+    "sourceType": "module",
+    "start": 0,
+    "type": "Program",
+  },
+  "start": 0,
+  "type": "File",
+}
+`;
