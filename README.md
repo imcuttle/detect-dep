@@ -42,7 +42,7 @@ detect-dep --version
 
 ### AST
 
-[lib/index.js:97-99](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L51-L57 'Source code on GitHub')
+[lib/index.js:97-99](https://github.com/imcuttle/detect-dep/blob/3abe7e1f28d2c9338023df443cb59f656e9fe748/lib/index.js#L51-L57 'Source code on GitHub')
 
 - **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
   **
@@ -53,7 +53,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/index.js:97-99](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L97-L99 'Source code on GitHub')
+[lib/index.js:97-99](https://github.com/imcuttle/detect-dep/blob/3abe7e1f28d2c9338023df443cb59f656e9fe748/lib/index.js#L97-L99 'Source code on GitHub')
 
 #### Parameters
 
@@ -91,7 +91,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 #### Examples
 
 ```javascript
-const detectDep = require('detect-dep')
+const { detectDep } = require('detect-dep')
 const dependencies = detectDep('some code', {})
 ```
 
@@ -99,13 +99,13 @@ Returns **any** dependencies {String\[]} - dependencies list
 
 ### Module
 
-[lib/index.js:196-214](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L170-L176 'Source code on GitHub')
+[lib/index.js:196-214](https://github.com/imcuttle/detect-dep/blob/3abe7e1f28d2c9338023df443cb59f656e9fe748/lib/index.js#L170-L176 'Source code on GitHub')
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ### tree
 
-[lib/index.js:196-214](https://github.com/imcuttle/detect-dep/blob/b86c89d2ecdffff22785b92e1071a5a5a5c38a63/lib/index.js#L196-L214 'Source code on GitHub')
+[lib/index.js:196-214](https://github.com/imcuttle/detect-dep/blob/3abe7e1f28d2c9338023df443cb59f656e9fe748/lib/index.js#L196-L214 'Source code on GitHub')
 
 #### Parameters
 
@@ -115,8 +115,8 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 #### Examples
 
 ```javascript
-const detectDep = require('detect-dep')
-const moduleTree = detectDep.tree('/path/to/file')
+const {tree} = require('detect-dep')
+const moduleTree = tree('/path/to/file')
 
 {
   id: '/path/to/file',
