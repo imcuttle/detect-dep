@@ -21,13 +21,13 @@ describe('findMatchFiles', function () {
   it('module path - recursive', function () {
     expect(
       findMatchFiles('react', true, /\.png/, {
-        from: fixture('module/m.js')
+        from: fixture('module/index.js')
       })
     ).toEqual(['react/a/a.png', 'react/root.png'])
 
     expect(
       findMatchFiles('react/', true, /\.png/, {
-        from: fixture('module/m.js')
+        from: fixture('module/index.js')
       })
     ).toEqual(['react/a/a.png', 'react/root.png'])
   })
@@ -35,13 +35,13 @@ describe('findMatchFiles', function () {
   it('relative path - recursive', function () {
     expect(
       findMatchFiles('.', true, /\.png/, {
-        from: fixture('relative/m.js')
+        from: fixture('relative/index.js')
       })
     ).toEqual(['./a/a.png', './node_modules/react/a/a.png', './node_modules/react/root.png', './root.png'])
 
     expect(
       findMatchFiles('./', true, /\.png/, {
-        from: fixture('relative/m.js')
+        from: fixture('relative/index.js')
       })
     ).toEqual(['./a/a.png', './node_modules/react/a/a.png', './node_modules/react/root.png', './root.png'])
   })

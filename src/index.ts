@@ -18,6 +18,7 @@ export const defaultOpts = {
   esModule: true,
   dynamicImport: true,
   requireContext: true,
+  requireEnsure: true,
   requireImport: true,
   localImport: true,
   moduleImport: true,
@@ -59,6 +60,8 @@ function getOpts(options: DetectDepOpts) {
  * @param options {Object}
  * @param [options.esModule=true] {Boolean}
  *    Disable `esExport` `esImport` `dynamicImport` when is falsy
+ * @param [options.requireEnsure=true] {Boolean}
+ *    whether detecting `require.ensure(['./a', 'b'])` or not
  * @param [options.requireContext=true] {Boolean}
  *    whether detecting `require.context('./root', false, /\.jsx?$/)` or not
  * @param [options.dynamicImport=true] {Boolean}

@@ -86,6 +86,25 @@ export default function resolver(source: string | import('@babel/types').File, o
           )
           state.result = state.result.concat(requestChunks)
         }
+        // require.ensure(['react', './root.png'])
+        else if (
+          options.requireEnsure &&
+          type === 'MemberExpression' &&
+          object.type === 'Identifier' &&
+          object.name === 'require' &&
+          property.type === 'Identifier' &&
+          property.name === 'ensure'
+        ) {
+          const [depsNode] = args
+
+          if (depsNode && depsNode.type === 'ArrayExpression' && depsNode.elements.length) {
+            const requestChunks = depsNode.elements.reduce(
+              (acc, elemNode) => acc.concat(resolveDependencies(elemNode, options, path)),
+              []
+            )
+            state.result = state.result.concat(requestChunks)
+          }
+        }
       },
       ImportDeclaration(path, state) {
         if (!options.esImport) {

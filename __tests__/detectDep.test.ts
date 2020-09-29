@@ -193,4 +193,12 @@ describe('getImports', function () {
       detectDepFileSync(__dirname + '/fixture/es/require-context-deep.js', { returnAbsolutePath: false })
     ).toEqual(['./a.png', './foo/a.png', './foo-template/a.png'])
   })
+
+  it('require-ensure', function () {
+    expect(detectDepFileSync(__dirname + '/fixture/require-ensure/index.js', { returnAbsolutePath: false })).toEqual([
+      '.',
+      './root.png',
+      'react'
+    ])
+  })
 })
