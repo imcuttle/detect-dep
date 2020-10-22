@@ -34,7 +34,13 @@ export const resolveDependencies = (node: import('@babel/types').Node, options: 
 }
 
 export default function resolver(source: string | import('@babel/types').File, options: DetectDepOpts = {}) {
-  const ast = typeof source !== 'string' ? source : parseToAst(source, options.parserOpts)
+  const ast =
+    typeof source !== 'string'
+      ? source
+      : parseToAst(source, {
+          ...(options && options.parserOpts),
+          sourceFilename: options.from
+        })
   const holder = { result: [] }
 
   traverse(

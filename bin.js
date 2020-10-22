@@ -9,8 +9,16 @@ const meow = require('meow')
 const concat = require('concat-stream')
 const fs = require('fs')
 
-const detectDep = require('.')
-const defaultOpts = detectDep.defaultOpts
+const { detectDep, defaultOpts } = require('.')
+/**
+ * esImport: true,
+ esExport: true,
+ esModule: true,
+ dynamicImport: true,
+ requireContext: true,
+ requireEnsure: true,
+ requireImport: true,
+ */
 
 const cli = meow(
   `
@@ -25,8 +33,23 @@ const cli = meow(
       --no-require-import      Ignore detect \`require('...')\`
                                [Default: ${!defaultOpts.requireImport}]
 
-      --no-es6-import          Ignore detect \`import ...\`
-                               [Default: ${!defaultOpts.es6Import}]
+      --no-es-import           Ignore detect ES import syntax
+                               [Default: ${!defaultOpts.esImport}]
+
+      --no-es-export           Ignore detect ES export syntax
+                               [Default: ${!defaultOpts.esExport}]
+
+      --no-dynamic-import      Ignore detect \`import('...')\`
+                               [Default: ${!defaultOpts.dynamicImport}]
+
+      --no-es-module           Ignore detect ES module (dynamic import, es import, es export)
+                               [Default: ${!defaultOpts.esModule}]
+
+      --no-require-context     Ignore detect \`require.context\`
+                               [Default: ${!defaultOpts.requireContext}]
+
+      --no-require-ensure      Ignore detect \`require.ensure\`
+                               [Default: ${!defaultOpts.requireEnsure}]
 
       --no-local-import        Ignore detect \`require('./local/path')\`
                                [Default: ${!defaultOpts.localImport}]
@@ -61,9 +84,25 @@ const cli = meow(
         type: 'boolean',
         default: !defaultOpts.requireImport
       },
-      noEs6Import: {
+      noEsExport: {
         type: 'boolean',
-        default: !defaultOpts.es6Import
+        default: !defaultOpts.esExport
+      },
+      noEsImport: {
+        type: 'boolean',
+        default: !defaultOpts.esImport
+      },
+      noEsModule: {
+        type: 'boolean',
+        default: !defaultOpts.esModule
+      },
+      noRequireContext: {
+        type: 'boolean',
+        default: !defaultOpts.requireContext
+      },
+      noRequireEnsure: {
+        type: 'boolean',
+        default: !defaultOpts.requireEnsure
       },
       noLocalImport: {
         type: 'boolean',
@@ -84,7 +123,7 @@ const cli = meow(
       },
       from: {
         type: 'string',
-        default: defaultOpts.from
+        default: defaultOpts.from || ''
       },
       noRecursive: {
         type: 'boolean',
@@ -99,8 +138,10 @@ const cli = meow(
 )
 
 const opts = {}
-;['noRequireImport', 'noEs6Import', 'noLocalImport', 'noModImport', 'noRecursive', 'noReturnAbsolute'].forEach(
-  (key) => {
+
+Object.keys(cli.flags)
+  .filter((name) => /^no[A-Z]/.test(name))
+  .forEach((key) => {
     let name = key.slice(2)
     name = name[0].toLowerCase() + name.slice(1)
     if (cli.flags.hasOwnProperty(name)) {
@@ -108,8 +149,7 @@ const opts = {}
     } else {
       opts[name] = !cli.flags[key]
     }
-  }
-)
+  })
 
 function run(content, filename) {
   if (!content) {

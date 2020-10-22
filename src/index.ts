@@ -28,7 +28,7 @@ export const defaultOpts = {
   recursive: true,
   resolver: require('./resolver').default,
   resolveExtensions: Object.keys(require.extensions),
-  extensions: ['.js', '.jsx', '.node', '.json']
+  extensions: ['.js', '.jsx', '.tsx', '.ts']
 }
 
 export type DetectDepOpts = Partial<typeof defaultOpts> &
