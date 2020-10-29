@@ -201,4 +201,26 @@ describe('getImports', function () {
       'react'
     ])
   })
+
+  it('require-dynamic', function () {
+    expect(detectDepFileSync(__dirname + '/fixture/dynamic/index.js', { returnAbsolutePath: false }))
+      .toMatchInlineSnapshot(`
+      Array [
+        "./config./foo.js",
+        "./config.a.js",
+        "./config.b.js",
+        "./config.env/foo/index.js",
+        "./config.env/foo.js",
+      ]
+    `)
+  })
+
+  it('require-dynamic-2', function () {
+    expect(detectDepFileSync(__dirname + '/fixture/dynamic/index-2.js', { returnAbsolutePath: false }))
+      .toMatchInlineSnapshot(`
+      Array [
+        "./config./foo.js",
+      ]
+    `)
+  })
 })

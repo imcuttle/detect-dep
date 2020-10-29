@@ -1,8 +1,8 @@
 import { Node, BinaryExpression } from '@babel/types'
 
 export type ParseRequestResult = {
-  type: 'raw' | 'identifier'
-  value: string
+  type: string
+  value: Node | string
 }
 const raw = (value: string) => ({ type: 'raw', value: value } as ParseRequestResult)
 
@@ -44,7 +44,7 @@ function parseRequestCore(node: Node): ParseRequestResult[] {
       return [{ type: 'identifier', value: node.name }]
     }
     default: {
-      throw new Error(`Unsupported node.type: ${node.type} in expression.`)
+      return [{ type: node.type, value: node }]
     }
   }
 }

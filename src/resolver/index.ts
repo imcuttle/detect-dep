@@ -23,7 +23,7 @@ export const resolveDependencies = (node: import('@babel/types').Node, options: 
 
     const [head] = output
     const tail = output[output.length - 1]
-    return findMatchFiles(head.value, true, tail.type === 'raw' ? tail.value : null, options)
+    return findMatchFiles(head.value as string, true, tail.type === 'raw' ? (tail.value as string) : null, options)
   } catch (err) {
     if (process.env.NODE_ENV !== 'production') {
       console.error(`Error happened in code: \`${String(path)}\`, filename: ${options.from}`)
@@ -85,7 +85,7 @@ export default function resolver(source: string | import('@babel/types').File, o
           }
 
           const requestChunks = findMatchFiles(
-            chunks[0].value,
+            chunks[0].value as string,
             recursiveNode ? recursiveNode.value : false,
             regNode ? new RegExp(regNode.pattern, regNode.flags) : /^\./,
             options

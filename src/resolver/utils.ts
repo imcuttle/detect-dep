@@ -94,11 +94,11 @@ export const findMatchFiles = (
 
   let contextPath
   const basedir = from ? nps.dirname(from) : process.cwd()
+
+  const { isDirectory } = getOptsFromFs(fs)
   if (isRelativePath(context)) {
-    // fs.read
     contextPath = nps.resolve(basedir, context)
   } else if (isModulePath(context)) {
-    const { isDirectory } = getOptsFromFs(fs)
     resolvePath(context, {
       ...opts,
       // @ts-ignore
@@ -127,19 +127,68 @@ export const findMatchFiles = (
     return false
   }
 
-  let filenames = getLeafFiles(contextPath, recursive, fs)
-  contextPath = !contextPath.endsWith('/') ? contextPath + '/' : contextPath
+  const matchHead = (filename: string, matchTest = tailMatch) => {
+    if (!matchTest) return true
+    if (typeof matchTest === 'string') {
+      return filename.startsWith(matchTest)
+    }
+    if (matchTest instanceof RegExp) {
+      return matchTest.test(filename)
+    }
+    return false
+  }
 
-  return filenames
-    .map((filename) => {
-      if (isRelativePath(context)) {
-        return './' + nps.relative(basedir, filename)
-      } else if (isModulePath(context)) {
-        if (filename.startsWith(contextPath)) {
-          return nps.join(context, filename.slice(contextPath.length))
-        }
+  const normalizedContextPath = !contextPath.endsWith('/') ? contextPath + '/' : contextPath
+  const normalizeFilename = (filename) => {
+    if (isRelativePath(context)) {
+      return './' + nps.relative(basedir, filename)
+    } else if (isModulePath(context)) {
+      if (filename.startsWith(normalizedContextPath)) {
+        return nps.join(context, filename.slice(normalizedContextPath.length))
       }
-      return filename
+    }
+    return filename
+  }
+
+  const matchContextAsFile = () => {
+    // filename match
+    // require(`config.${env}.js`)
+    let matchedFiles = []
+
+    // require(`config./${env}.js`)
+    if (context.endsWith('/')) {
+      return []
+    }
+    const basename = nps.basename(context)
+    const contextDirname = nps.dirname(contextPath)
+    const filenames = fs
+      .readdirSync(contextDirname)
+      .filter((name) => match(name) && matchHead(name, basename))
+      .map((name) => nps.join(contextDirname, name))
+      .filter((filename) => nps.normalize(contextPath) !== filename)
+
+    filenames.forEach((filename) => {
+      if (isDirectory(filename)) {
+        if (!recursive) {
+          return
+        }
+        matchedFiles = matchedFiles.concat(
+          findMatchFiles(normalizeFilename(filename), recursive, tailMatch, { fs, from, ...opts })
+        )
+      } else {
+        matchedFiles.push(normalizeFilename(filename))
+      }
     })
-    .filter((filename) => match(filename))
+    return matchedFiles
+  }
+
+  let matchedFiles = []
+  if (isDirectory(contextPath)) {
+    let filenames = getLeafFiles(contextPath, recursive, fs)
+
+    matchedFiles = matchedFiles.concat(
+      filenames.map((filename) => normalizeFilename(filename)).filter((filename) => match(filename))
+    )
+  }
+  return matchedFiles.concat(matchContextAsFile())
 }
