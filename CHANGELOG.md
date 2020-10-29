@@ -1,3 +1,5 @@
+# [1.1.0](https://github.com/imcuttle/detect-dep/compare/v1.0.2...v1.1.0) (2020-10-29)
+
 ## [1.0.2](https://github.com/imcuttle/detect-dep/compare/v1.0.1...v1.0.2) (2020-10-22)
 
 ## [1.0.1](https://github.com/imcuttle/detect-dep/compare/d512c4b41236344cd47bf500e50fe8fbce10d560...v1.0.1) (2020-09-29)
