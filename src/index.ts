@@ -8,7 +8,7 @@ import * as nps from 'path'
 import * as defaultFs from 'fs'
 import resolvePath, { ResolvePathOpts } from './resolvePath'
 import { ParserOptions } from '@babel/parser'
-import { isLocalPath, isModulePath } from './resolver/utils'
+import { getOptsFromFs, isLocalPath, isModulePath } from './resolver/utils'
 const uniq = require('array-uniq')
 
 export const defaultOpts = {
@@ -24,6 +24,7 @@ export const defaultOpts = {
   moduleImport: true,
   allowWithoutExports: true,
   returnAbsolutePath: true,
+  preserveSymlinks: false,
   from: null,
   recursive: true,
   resolver: require('./resolver').default,
@@ -110,9 +111,13 @@ export function detectDepFileSync(filename, options?: Omit<DetectDepOpts, 'from'
 function detectDepInner(source, options: DetectDepOpts = {}, { tracks = [], checkExtension = true } = {}) {
   options = getOpts(options)
   const { fs = defaultFs } = options
+  const { realpathSync } = getOptsFromFs(fs)
 
   if (options.from) {
     options.from = nps.resolve(options.from)
+    if (options && options.preserveSymlinks === false) {
+      options.from = realpathSync(options.from)
+    }
 
     if (checkExtension && options.extensions.indexOf(nps.extname(options.from)) < 0) {
       return []

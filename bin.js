@@ -72,6 +72,9 @@ const cli = meow(
       --no-return-absolute     Return the origin module id from code
                                [Default: ${!defaultOpts.returnAbsolutePath}]
 
+      --preserve-symlinks      if true, doesn't resolve as the real path before resolving.
+                               [Default: ${!defaultOpts.preserveSymlinks}]
+
     Examples
       $ cat file.js | detect-dep --from file.js
       $ detect-dep file.js
@@ -129,6 +132,10 @@ const cli = meow(
         type: 'boolean',
         default: !defaultOpts.recursive
       },
+      preserveSymlinks: {
+        type: 'boolean',
+        default: defaultOpts.preserveSymlinks
+      },
       noReturnAbsolute: {
         type: 'boolean',
         default: !defaultOpts.returnAbsolutePath
@@ -164,6 +171,7 @@ function run(content, filename) {
     returnAbsolutePath: opts.returnAbsolute,
     recursive: opts.recursive,
     from: filename,
+    preserveSymlinks: cli.flags.preserveSymlinks,
     extensions: cli.flags.extensions.split(','),
     resolveExtensions: cli.flags.resolveExtensions.split(',')
   })
