@@ -1,6 +1,6 @@
 {
   "name": "detect-dep",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Detect the dependencies by walking AST",
   "author": "imcuttle <moyuyc95@gmail.com>",
   "scripts": {

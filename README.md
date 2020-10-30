@@ -42,7 +42,7 @@ detect-dep --version
 
 ### AST
 
-[lib/index.js:100-102](https://github.com/imcuttle/detect-dep/blob/f671ab97109784ea6cd219c979c1607a8681f3e2/lib/index.js#L52-L58 'Source code on GitHub')
+[lib/index.js:101-103](https://github.com/imcuttle/detect-dep/blob/cd70e86c7ddf1be13292efa45c9862653723c9cf/lib/index.js#L53-L59 'Source code on GitHub')
 
 - **See: [Abstract syntax tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
   **
@@ -53,7 +53,7 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ### detectDep
 
-[lib/index.js:100-102](https://github.com/imcuttle/detect-dep/blob/f671ab97109784ea6cd219c979c1607a8681f3e2/lib/index.js#L100-L102 'Source code on GitHub')
+[lib/index.js:101-103](https://github.com/imcuttle/detect-dep/blob/cd70e86c7ddf1be13292efa45c9862653723c9cf/lib/index.js#L101-L103 'Source code on GitHub')
 
 #### Parameters
 
@@ -101,13 +101,13 @@ Returns **any** dependencies {String\[]} - dependencies list
 
 ### Module
 
-[lib/index.js:199-217](https://github.com/imcuttle/detect-dep/blob/f671ab97109784ea6cd219c979c1607a8681f3e2/lib/index.js#L173-L179 'Source code on GitHub')
+[lib/index.js:204-222](https://github.com/imcuttle/detect-dep/blob/cd70e86c7ddf1be13292efa45c9862653723c9cf/lib/index.js#L178-L184 'Source code on GitHub')
 
 Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ### tree
 
-[lib/index.js:199-217](https://github.com/imcuttle/detect-dep/blob/f671ab97109784ea6cd219c979c1607a8681f3e2/lib/index.js#L199-L217 'Source code on GitHub')
+[lib/index.js:204-222](https://github.com/imcuttle/detect-dep/blob/cd70e86c7ddf1be13292efa45c9862653723c9cf/lib/index.js#L204-L222 'Source code on GitHub')
 
 #### Parameters
 
