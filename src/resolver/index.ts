@@ -117,21 +117,27 @@ export default function resolver(source: string | import('@babel/types').File, o
           return
         }
         const source = path.get('source')
-        state.result.push(source.node.value)
+        if (source?.node) {
+          state.result.push(source.node.value)
+        }
       },
       ExportAllDeclaration(path, state) {
         if (!options.esExport) {
           return
         }
         const source = path.get('source')
-        state.result.push(source.node.value)
+        if (source?.node) {
+          state.result.push(source.node.value)
+        }
       },
       ExportNamedDeclaration(path, state) {
         if (!options.esExport) {
           return
         }
         const source = path.get('source')
-        state.result.push(source.node.value)
+        if (source?.node) {
+          state.result.push(source.node.value)
+        }
       }
     },
     null,
