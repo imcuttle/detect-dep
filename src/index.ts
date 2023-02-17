@@ -239,7 +239,7 @@ export function tree(path, options: DetectDepOpts = {}) {
     const dependencies = detectDepInner(
       fs.readFileSync(path).toString(),
       {
-        ...opts,
+        ...options,
         from: path,
         recursive: false,
         returnAbsolutePath: true
@@ -257,5 +257,5 @@ export function tree(path, options: DetectDepOpts = {}) {
     return map[path]
   }
 
-  return treeRecursive(path, opts, {})
+  return treeRecursive(path, options, {})
 }
